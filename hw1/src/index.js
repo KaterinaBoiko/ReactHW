@@ -33,6 +33,12 @@ const presidentObjects = [
   }
 ]
 
+const style = {
+  backgroundColor: "#ddd",
+  paddingTop: "1em",
+  paddingBottom: "1em"
+}
+
 ReactDOM.render(
   <React.StrictMode>
     <ul>
@@ -45,7 +51,7 @@ ReactDOM.render(
       <li>Джеймс Монро</li>
       <li>Джон Куинси Адамс</li>
     </ol>
-    <ul>
+    <ul style={style}>
       {
         presidentStrings.map((president) =>
           <li key={president}>{president}</li>)
