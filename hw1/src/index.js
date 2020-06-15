@@ -3,41 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 //import App from './App';
 import * as serviceWorker from './serviceWorker';
-
-const presidentStrings = ["Эндрю Джексон", "Мартин Ван Бюрен", "Уильям Гаррисон"];
-const presidentObjects = [
-  {
-    firstName: "Джон",
-    lastName: "Тайлер",
-    presidentIndex: 10
-  },
-  {
-    firstName: "Джеймс Нокс",
-    lastName: "Полк",
-    presidentIndex: 11
-  },
-  {
-    firstName: "Закари",
-    lastName: "Тейлор",
-    presidentIndex: 12
-  },
-  {
-    firstName: "Миллард",
-    lastName: "Филлмор",
-    presidentIndex: 13
-  },
-  {
-    firstName: "Франклин",
-    lastName: "Пирс",
-    presidentIndex: 14
-  }
-]
-
-const style = {
-  backgroundColor: "#ddd",
-  paddingTop: "1em",
-  paddingBottom: "1em"
-}
+import { presidentStrings, presidentObjects, styleList, serverData } from './variables'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -51,7 +17,7 @@ ReactDOM.render(
       <li>Джеймс Монро</li>
       <li>Джон Куинси Адамс</li>
     </ol>
-    <ul style={style}>
+    <ul style={styleList}>
       {
         presidentStrings.map((president) =>
           <li key={president}>{president}</li>)
@@ -66,12 +32,49 @@ ReactDOM.render(
             <li key={president.presidentIndex}>{formatOutput(president)}</li>)
       }
     </ul>
+    <ul>
+      {
+        serverData
+          .sort((a, b) => (a.date > b.date ? 1 : -1))
+          .map(event => {
+            let styleOpacity;
+            if (Date.parse(event.date) < Date.now())
+              styleOpacity = {
+                opacity: "50%"
+              }
+
+            return (<li key={event.id} style={styleOpacity}>
+              <a href={`https://www.facebook.com/events/${event.id}/`} target="_blank" rel="noopener noreferrer">{event.title}</a>
+              <p>{formatDate(event.date)}</p>
+              <p>{event.place}</p>
+            </li>)
+          })
+      }
+    </ul>
   </React.StrictMode>,
   document.getElementById('root')
 );
 
 function formatOutput({ firstName, lastName, presidentIndex }) {
   return `${lastName}, ${firstName}, ${presidentIndex}-й`;
+}
+
+function formatDate(dateStr) {
+  const date = new Date(Date.parse(dateStr));
+  let timeOfDay;
+  if (date.getHours() >= 21 || date.getHours() < 5)
+    timeOfDay = 'Ночь'
+  else if (date.getHours() >= 5 && date.getHours() < 11)
+    timeOfDay = 'Утро'
+  else if (date.getHours() >= 11 && date.getHours() < 17)
+    timeOfDay = 'День'
+  else timeOfDay = 'Вечер'
+
+  return `${timeOfDay}, ${new Intl.DateTimeFormat('en-GB', {
+    year: 'numeric', month: 'numeric', day: 'numeric',
+    hour: 'numeric', minute: 'numeric', second: 'numeric',
+    hour12: false
+  }).format(date)}`
 }
 
 // If you want your app to work offline and load faster, you can change
