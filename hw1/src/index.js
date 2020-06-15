@@ -11,6 +11,11 @@ ReactDOM.render(
       <li>Джон Адамс</li>
       <li>Томас Джефферсон</li>
     </ul>
+    <ol start="4">
+      <li>Джеймс Мэдисон</li>
+      <li>Джеймс Монро</li>
+      <li>Джон Куинси Адамс</li>
+    </ol>
   </React.StrictMode>,
   document.getElementById('root')
 );
