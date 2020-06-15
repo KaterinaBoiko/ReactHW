@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+//import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ul>
+      <li>Джордж Вашингтон</li>
+      <li>Джон Адамс</li>
+      <li>Томас Джефферсон</li>
+    </ul>
   </React.StrictMode>,
   document.getElementById('root')
 );
