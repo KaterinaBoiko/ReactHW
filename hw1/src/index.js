@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Form from './FormComponent';
 import './index.css';
 //import App from './App';
 import * as serviceWorker from './serviceWorker';
@@ -51,6 +52,7 @@ ReactDOM.render(
           })
       }
     </ul>
+    <Form />
   </React.StrictMode>,
   document.getElementById('root')
 );
