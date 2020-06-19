@@ -1,10 +1,10 @@
-const presidentStrings = [
+const presidentNames = [
     "Эндрю Джексон",
     "Мартин Ван Бюрен",
     "Уильям Гаррисон"
-]
+];
 
-const presidentObjects = [
+const presidents = [
     {
         firstName: "Джон",
         lastName: "Тайлер",
@@ -30,13 +30,13 @@ const presidentObjects = [
         lastName: "Пирс",
         presidentIndex: 14
     }
-]
+];
 
 const styleList = {
     backgroundColor: "#ddd",
     paddingTop: "1em",
     paddingBottom: "1em"
-}
+};
 
 const serverData = [
     {
@@ -69,6 +69,6 @@ const serverData = [
         "place": "Причал №6, Почтовая пл.",
         "date": "2020-06-13T07:45:00.000Z"
     }
-]
+];
 
-export { presidentStrings, presidentObjects, styleList, serverData };
+export { presidentNames, presidents, styleList, serverData };

@@ -16,3 +16,7 @@ ul::first-letter {
   color: #aaa;
   font-weight: bold;
 }
+
+span {
+  padding-left: 5px;
+}

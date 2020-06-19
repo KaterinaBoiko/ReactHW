@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Form from './FormComponent';
+import Form from './Form';
 import './index.css';
-//import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { presidentStrings, presidentObjects, styleList, serverData } from './variables'
+import { presidentNames, presidents, styleList, serverData } from './variables';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -20,13 +19,13 @@ ReactDOM.render(
     </ol>
     <ul style={styleList}>
       {
-        presidentStrings.map((president) =>
+        presidentNames.map((president) =>
           <li key={president}>{president}</li>)
       }
     </ul>
     <ul>
       {
-        presidentObjects
+        presidents
           .filter((president) =>
             president.presidentIndex % 2 !== 0)
           .map((president) =>
@@ -42,13 +41,13 @@ ReactDOM.render(
             if (Date.parse(event.date) < Date.now())
               styleOpacity = {
                 opacity: "50%"
-              }
+              };
 
             return (<li key={event.id} style={styleOpacity}>
               <a href={`https://www.facebook.com/events/${event.id}/`} target="_blank" rel="noopener noreferrer">{event.title}</a>
               <p>{formatDate(event.date)}</p>
               <p>{event.place}</p>
-            </li>)
+            </li>);
           })
       }
     </ul>
@@ -65,18 +64,18 @@ function formatDate(dateStr) {
   const date = new Date(Date.parse(dateStr));
   let timeOfDay;
   if (date.getHours() >= 21 || date.getHours() < 5)
-    timeOfDay = 'Ночь'
+    timeOfDay = 'Ночь';
   else if (date.getHours() >= 5 && date.getHours() < 11)
-    timeOfDay = 'Утро'
+    timeOfDay = 'Утро';
   else if (date.getHours() >= 11 && date.getHours() < 17)
-    timeOfDay = 'День'
-  else timeOfDay = 'Вечер'
+    timeOfDay = 'День';
+  else timeOfDay = 'Вечер';
 
   return `${timeOfDay}, ${new Intl.DateTimeFormat('en-GB', {
     year: 'numeric', month: 'numeric', day: 'numeric',
     hour: 'numeric', minute: 'numeric', second: 'numeric',
     hour12: false
-  }).format(date)}`
+  }).format(date)}`;
 }
 
 // If you want your app to work offline and load faster, you can change
